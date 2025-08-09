@@ -1,0 +1,7 @@
+services:
+  web:
+    image: melat-demo:v1
+    container_name: melat-demo
+    ports:
+      - "8080:8080"
+    restart: always

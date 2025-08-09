@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: melat-demo
+  namespace: melat
+  labels:
+    app: melat-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: melat-demo
+  template:
+    metadata:
+      labels:
+        app: melat-demo
+    spec:
+      containers:
+        - name: nginx
+          image: registry.sarvrayaneh.com/test/melat-demo:v1
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            seccompProfile:
+              type: RuntimeDefault
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+        - name: nexus
