@@ -13,7 +13,10 @@
     position: relative;
     color: #1e293b;
   }
-  
+
+<!-- (255, 135, 135)  -->
+<!-- (255, 255, 255)  -->
+
   body::before {
     content: "";
     position: absolute;
